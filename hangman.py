@@ -1,6 +1,7 @@
 from string import ascii_lowercase
 from api_reader import get_api_data as get_word
 
+
 def print_welcome_message():
     print("""Welcome to my lovely Hangman project!
 I hope you will enjoy the game!
@@ -30,6 +31,10 @@ def ask_for_a_letter(unused_letters):
     print_unused_letters(unused_letters)
     current_letter = input("Please enter an unused letter!\n")
     return current_letter.lower()
+
+
+def is_only_one_character(current_letter):
+    return len(current_letter) == 1
 
 
 def main():
