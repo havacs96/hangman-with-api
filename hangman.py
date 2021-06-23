@@ -48,8 +48,8 @@ def is_letter(current_letter):
     return current_letter.isalpha()
 
 
-def is_unused(current_letter, unused_letters):
-    return current_letter in unused_letters
+def is_unused(current_letter, used_letters):
+    return current_letter not in used_letters
 
 
 
@@ -57,7 +57,16 @@ def is_letter_valid(current_letter, unused_letters):
     return is_only_one_character(current_letter) and is_letter(current_letter) and is_unused(current_letter, unused_letters)
 
 
+def get_valid_letter(unused_letters):
+    while True:
+        current_letter = ask_for_a_letter(unused_letters)
+        if is_letter_valid(current_letter, unused_letters):
+            return current_letter
+
+
 def main():
+    lives = 6
+    is_over = False
     test = ["a", "b"]
     unused_letters = get_abc_letters()
     print_welcome_message()
@@ -65,8 +74,9 @@ def main():
     word = get_word()
     letters_to_check = list(word)
     shown_letters = list(word)
-    print_covered_word(shown_letters)
-    current_letter = ask_for_a_letter(unused_letters)
+    while not is_over:
+        print_covered_word(shown_letters)
+        current_letter = get_valid_letter(used_letters, unused_letters)
     
     
 if __name__ == "__main__":
