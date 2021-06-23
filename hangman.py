@@ -27,6 +27,13 @@ def print_unused_letters(unused_letters):
     print(f"Unused letters are: {create_string_from_unused_letters(unused_letters)}")
 
 
+def print_covered_word(shown_letters):
+    printable_word = ""
+    for _ in shown_letters:
+        printable_word += "_ "
+    print(printable_word + "\n")
+        
+
 def ask_for_a_letter(unused_letters):
     print_unused_letters(unused_letters)
     current_letter = input("Please enter an unused letter!\n")
@@ -55,9 +62,12 @@ def main():
     unused_letters = get_abc_letters()
     print_welcome_message()
     username = ask_username()
-    current_letter = ask_for_a_letter(unused_letters)
     word = get_word()
+    letters_to_check = list(word)
+    shown_letters = list(word)
+    print_covered_word(shown_letters)
+    current_letter = ask_for_a_letter(unused_letters)
     
-
+    
 if __name__ == "__main__":
     main()
