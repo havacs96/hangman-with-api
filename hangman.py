@@ -69,6 +69,27 @@ def remove_used_letter(current_letter, unused_letters):
     unused_letters.remove(current_letter)
 
 
+def is_letter_in_word(current_letter, letters_to_check):
+    return current_letter in letters_to_check
+
+
+def get_letter_indicies(current_letter, letters_to_check):
+    letters_indicies = []
+    index = 0
+    for letter in letters_to_check:
+        if current_letter == letter:
+            letters_indicies.append(index)
+        index += 1
+    return letters_indicies
+
+
+def replace_correct_guesses(current_letter, letters_to_check, shown_letters):
+    letter_indicies = get_letter_indicies(current_letter, letters_to_check)
+    for position in letter_indicies:
+        shown_letters[position] = current_letter
+    
+
+
 def main():
     lives = 6
     is_over = False
@@ -82,6 +103,8 @@ def main():
         print_covered_word(shown_letters)
         current_letter = get_valid_letter(unused_letters)
         remove_used_letter(current_letter, unused_letters)
+        if is_letter_in_word:
+            replace_correct_guesses(current_letter, letters_to_check, shown_letters)
 
     
 if __name__ == "__main__":
