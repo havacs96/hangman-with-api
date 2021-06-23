@@ -89,6 +89,9 @@ def replace_correct_guesses(current_letter, letters_to_check, shown_letters):
         shown_letters[position] = current_letter
     
 
+def has_lives(lives):
+    return 0 <= lives
+
 
 def main():
     lives = 6
@@ -105,6 +108,9 @@ def main():
         remove_used_letter(current_letter, unused_letters)
         if is_letter_in_word:
             replace_correct_guesses(current_letter, letters_to_check, shown_letters)
+        else:
+            lives -= 1
+        
 
     
 if __name__ == "__main__":
