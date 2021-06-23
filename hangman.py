@@ -34,6 +34,10 @@ def print_covered_word(shown_letters):
     print(printable_word + "\n")
         
 
+def print_winning_message():
+    print("Congratulations! You won!")
+
+
 def ask_for_a_letter(unused_letters):
     print_unused_letters(unused_letters)
     current_letter = input("Please enter an unused letter!\n")
@@ -93,6 +97,10 @@ def has_lives(lives):
     return 0 <= lives
 
 
+def guessed_word(shown_letters):
+    return "_" not in shown_letters
+
+
 def main():
     lives = 6
     is_over = False
@@ -110,7 +118,10 @@ def main():
             replace_correct_guesses(current_letter, letters_to_check, shown_letters)
         else:
             lives -= 1
-        
+        if not has_lives:
+            is_over = True
+        if guessed_word:
+            is_over = True
 
     
 if __name__ == "__main__":
