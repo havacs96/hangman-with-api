@@ -41,13 +41,18 @@ def is_letter(current_letter):
     return current_letter.isalpha()
 
 
+def is_unused(current_letter, unused_letters):
+    return current_letter in unused_letters
+
+
 def main():
+    test = ["a", "b"]
     unused_letters = get_abc_letters()
     print_welcome_message()
     username = ask_username()
     current_letter = ask_for_a_letter(unused_letters)
     word = get_word()
-
+    
 
 if __name__ == "__main__":
     main()
