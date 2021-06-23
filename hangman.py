@@ -49,7 +49,7 @@ def is_letter(current_letter):
 
 
 def is_unused(current_letter, used_letters):
-    return current_letter not in used_letters
+    return current_letter in used_letters
 
 
 
@@ -62,6 +62,11 @@ def get_valid_letter(unused_letters):
         current_letter = ask_for_a_letter(unused_letters)
         if is_letter_valid(current_letter, unused_letters):
             return current_letter
+        print("Invalid letter input! Please try again!")
+
+
+def remove_used_letter(current_letter, unused_letters):
+    unused_letters.remove(current_letter)
 
 
 def main():
@@ -76,8 +81,8 @@ def main():
     shown_letters = list(word)
     while not is_over:
         print_covered_word(shown_letters)
-        current_letter = get_valid_letter(used_letters, unused_letters)
-    
+        current_letter = get_valid_letter(unused_letters)
+        remove_used_letter(current_letter, unused_letters)
     
 if __name__ == "__main__":
     main()
