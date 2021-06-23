@@ -17,10 +17,3 @@ def ask_for_a_letter(unused_letters):
     print_unused_letters(unused_letters)
     letter = input("Please enter an unused letter!")
     return letter
-
-
-
-
-
-
-
