@@ -45,6 +45,10 @@ def is_unused(current_letter, unused_letters):
     return current_letter in unused_letters
 
 
+def is_letter_valid(current_letter, unused_letters):
+    return is_only_one_character(current_letter) and is_letter(current_letter) and is_unused(current_letter, unused_letters)
+
+
 def main():
     test = ["a", "b"]
     unused_letters = get_abc_letters()
