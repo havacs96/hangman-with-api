@@ -29,8 +29,8 @@ def print_unused_letters(unused_letters):
 
 def print_covered_word(shown_letters):
     printable_word = ""
-    for _ in shown_letters:
-        printable_word += "_ "
+    for element in shown_letters:
+        printable_word += f"{element} "
     print(printable_word + "\n")
         
 
@@ -72,17 +72,17 @@ def remove_used_letter(current_letter, unused_letters):
 def main():
     lives = 6
     is_over = False
-    test = ["a", "b"]
     unused_letters = get_abc_letters()
     print_welcome_message()
     username = ask_username()
     word = get_word()
     letters_to_check = list(word)
-    shown_letters = list(word)
+    shown_letters = ["_" for _ in range(len(letters_to_check))]
     while not is_over:
         print_covered_word(shown_letters)
         current_letter = get_valid_letter(unused_letters)
         remove_used_letter(current_letter, unused_letters)
+
     
 if __name__ == "__main__":
     main()
