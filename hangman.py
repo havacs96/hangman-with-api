@@ -37,6 +37,10 @@ def is_only_one_character(current_letter):
     return len(current_letter) == 1
 
 
+def is_letter(current_letter):
+    return current_letter.isalpha()
+
+
 def main():
     unused_letters = get_abc_letters()
     print_welcome_message()
