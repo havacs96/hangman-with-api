@@ -1,8 +1,11 @@
 from string import ascii_lowercase
 from api_reader import get_api_data as get_word
 import printers
+import validators
+
 
 SPECIAL_CHARACTERS = [".", "'", " ", "-", "?", "!"]
+
 
 def ask_username():
     return input("What is your name?\n\n")
@@ -25,37 +28,16 @@ def ask_for_a_letter(unused_letters):
     return current_letter.lower()
 
 
-def is_only_one_character(current_letter):
-    return len(current_letter) == 1
-
-
-def is_letter(current_letter):
-    return current_letter.isalpha()
-
-
-def is_unused(current_letter, used_letters):
-    return current_letter in used_letters
-
-
-
-def is_letter_valid(current_letter, unused_letters):
-    return is_only_one_character(current_letter) and is_letter(current_letter) and is_unused(current_letter, unused_letters)
-
-
 def get_valid_letter(unused_letters):
     while True:
         current_letter = ask_for_a_letter(unused_letters)
-        if is_letter_valid(current_letter, unused_letters):
+        if validators.is_letter_valid(current_letter, unused_letters):
             return current_letter
         print("Invalid letter input! Please try again!")
 
 
 def remove_used_letter(current_letter, unused_letters):
     unused_letters.remove(current_letter)
-
-
-def is_letter_in_word(current_letter, letters_to_check):
-    return current_letter in letters_to_check
 
 
 def get_letter_indicies(current_letter, letters_to_check):
@@ -72,14 +54,6 @@ def replace_correct_guesses(current_letter, letters_to_check, shown_letters):
     letter_indicies = get_letter_indicies(current_letter, letters_to_check)
     for position in letter_indicies:
         shown_letters[position] = current_letter
-    
-
-def has_lives(lives):
-    return 0 < lives
-
-
-def guessed_word(shown_letters):
-    return "_" not in shown_letters
 
 
 def main():
@@ -95,14 +69,14 @@ def main():
         printers.print_covered_word(shown_letters)
         current_letter = get_valid_letter(unused_letters)
         remove_used_letter(current_letter, unused_letters)
-        if is_letter_in_word(current_letter, letters_to_check):
+        if validators.is_letter_in_word(current_letter, letters_to_check):
             replace_correct_guesses(current_letter, letters_to_check, shown_letters)
         else:
             lives -= 1
-        if not has_lives(lives):
+        if not validators.has_lives(lives):
             is_over = True
             printers.print_lose_message()
-        if guessed_word(shown_letters):
+        if validators.guessed_word(shown_letters):
             is_over = True
             printers.print_winning_message()
         printers.print_correct_word(word)
