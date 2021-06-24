@@ -1,11 +1,6 @@
 from string import ascii_lowercase
 from api_reader import get_api_data as get_word
-
-
-def print_welcome_message():
-    print("""Welcome to my lovely Hangman project!
-I hope you will enjoy the game!
-""")
+import printers
 
 
 def ask_username():
@@ -21,29 +16,10 @@ def create_string_from_unused_letters(unused_letters):
     for letter in unused_letters:
         printable_unused_letters += letter + " "
     return printable_unused_letters[0:-1]
-
-
-def print_unused_letters(unused_letters):
-    print(f"Unused letters are: {create_string_from_unused_letters(unused_letters)}")
-
-
-def print_covered_word(shown_letters):
-    printable_word = ""
-    for element in shown_letters:
-        printable_word += f"{element} "
-    print(printable_word + "\n")
         
 
-def print_winning_message():
-    print("Congratulations! You won!")
-
-
-def print_lose_message():
-    print("Unfortunatelly you lost! Do not give up!")
-
-
 def ask_for_a_letter(unused_letters):
-    print_unused_letters(unused_letters)
+    printers.print_unused_letters(unused_letters)
     current_letter = input("Please enter an unused letter!\n")
     return current_letter.lower()
 
@@ -109,13 +85,13 @@ def main():
     lives = 6
     is_over = False
     unused_letters = get_abc_letters()
-    print_welcome_message()
+    printers.print_welcome_message()
     username = ask_username()
     word = get_word()
     letters_to_check = list(word)
     shown_letters = ["_" for _ in range(len(letters_to_check))]
     while not is_over:
-        print_covered_word(shown_letters)
+        printers.print_covered_word(shown_letters)
         current_letter = get_valid_letter(unused_letters)
         remove_used_letter(current_letter, unused_letters)
         if is_letter_in_word(current_letter, letters_to_check):
@@ -124,10 +100,10 @@ def main():
             lives -= 1
         if not has_lives(lives):
             is_over = True
-            print_lose_message()
+            printers.print_lose_message()
         if guessed_word(shown_letters):
             is_over = True
-            print_winning_message()
+            printers.print_winning_message()
 
     
 if __name__ == "__main__":
