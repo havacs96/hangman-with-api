@@ -105,6 +105,7 @@ def main():
         if guessed_word(shown_letters):
             is_over = True
             printers.print_winning_message()
+        printers.print_correct_word(word)
 
     
 if __name__ == "__main__":

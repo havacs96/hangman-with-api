@@ -24,3 +24,7 @@ def print_winning_message():
 
 def print_lose_message():
     print("Unfortunatelly you lost! Do not give up!")
+
+
+def print_correct_word(word):
+    print(f'The correct word was "{word}"!')
