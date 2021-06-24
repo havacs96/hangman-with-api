@@ -2,6 +2,7 @@ from string import ascii_lowercase
 from api_reader import get_api_data as get_word
 import printers
 
+SPECIAL_CHARACTERS = [".", "'", " ", "-", "?", "!"]
 
 def ask_username():
     return input("What is your name?\n\n")
@@ -89,7 +90,7 @@ def main():
     username = ask_username()
     word = get_word()
     letters_to_check = list(word)
-    shown_letters = ["_" for _ in range(len(letters_to_check))]
+    shown_letters = ["_" if x not in SPECIAL_CHARACTERS else x for x in letters_to_check]
     while not is_over:
         printers.print_covered_word(shown_letters)
         current_letter = get_valid_letter(unused_letters)
