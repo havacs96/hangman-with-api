@@ -122,7 +122,6 @@ def main():
             replace_correct_guesses(current_letter, letters_to_check, shown_letters)
         else:
             lives -= 1
-        print(lives)
         if not has_lives(lives):
             is_over = True
             print_lose_message()
