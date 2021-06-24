@@ -6,5 +6,5 @@ def get_api_data():
     for word_dict in response.json():
         print(response.json())
         word_from_api += word_dict.get("word")
-    return word_from_api
+    return word_from_api.lower()
     
