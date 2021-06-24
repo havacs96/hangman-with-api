@@ -7,6 +7,14 @@ I hope you will enjoy the game!
 """)
 
 
+def print_menu_message():
+    print("""Welcome to the game menu! Please enter a number!
+Write "1" for playing Hangman,
+write "2" for seeing the statistics menu,
+write "0" to exit from the program
+""")
+
+
 def print_unused_letters(unused_letters):
     print(f"Unused letters are: {create_string_from_unused_letters(unused_letters)}")
 
