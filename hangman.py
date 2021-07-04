@@ -8,6 +8,15 @@ import os
 SPECIAL_CHARACTERS = [".", "'", " ", "-", "?", "!"]
 
 
+def ask_for_menu_action():
+    while True:
+        printers.print_menu_message()
+        menu_action = input("Please enter a number between")
+        if validators.is_only_number(menu_action) and validators.is_between_zero_and_two(menu_action):
+            return int(menu_action)
+        print(f"{menu_action} is an invalid input!")
+
+
 def ask_username():
     return input("What is your name?\n\n")
 
