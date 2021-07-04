@@ -76,7 +76,7 @@ def ask_for_play_again(user_name):
         print("Invalid input! Please try again!")
 
 
-def guess_the_word(score):
+def guess_the_word(score, user_name):
     lives = 6
     unused_letters = get_abc_letters()
     word = get_word()
@@ -98,7 +98,7 @@ def guess_the_word(score):
         if validators.guessed_word(shown_letters):
             score += 2
             printers.print_score(score)
-            printers.print_winning_message(word)
+            printers.print_winning_message(word, user_name)
             return False, score
 
 
@@ -108,7 +108,7 @@ def play_hangman():
     printers.print_welcome_message()
     username = ask_username()
     while not is_game_over:
-        is_game_over, score = guess_the_word(score)
+        is_game_over, score = guess_the_word(score, username)
         if is_game_over == False:
             time.sleep(5)
         else:
