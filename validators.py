@@ -1,3 +1,7 @@
+def is_between_zero_and_two(number_input):
+    return 0 <= number_input < 3
+
+
 def is_only_one_character(current_letter):
     return len(current_letter) == 1
 
