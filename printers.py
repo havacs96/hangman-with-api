@@ -26,12 +26,16 @@ def print_covered_word(shown_letters):
     print(printable_word + "\n")
 
 
-def print_winning_message():
+def print_winning_message(word):
     print("Congratulations! You won!")
+    print_correct_word(word)
 
 
-def print_lose_message():
+
+def print_lose_message(word):
     print("Unfortunatelly you lost! Do not give up!")
+    print_correct_word(word)
+
 
 
 def print_correct_word(word):
