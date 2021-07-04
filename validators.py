@@ -32,4 +32,7 @@ def has_lives(lives):
 
 def guessed_word(shown_letters):
     return "_" not in shown_letters
-    
+
+
+def is_yes_or_no(input_string):
+    return input_string.lower() == "yes" or input_string.lower() == "no"
