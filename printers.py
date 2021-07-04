@@ -26,6 +26,13 @@ def print_covered_word(shown_letters):
     print(printable_word + "\n")
 
 
+def print_lives_left(lives):
+    if 1 < lives:
+        print(f'You have {lives} lives left.')
+    else:
+        print(f'You have {lives} life left.')
+
+
 def print_winning_message(word):
     print("Congratulations! You won!")
     print_correct_word(word)

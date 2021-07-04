@@ -78,7 +78,7 @@ def play_hangman():
     shown_letters = ["_" if x not in SPECIAL_CHARACTERS else x for x in letters_to_check]
     while not is_over:
         os.system('cls||clear')
-        print(f'You have {lives} lives left.')
+        printers.print_lives_left(lives)
         printers.print_covered_word(shown_letters)
         current_letter = get_valid_letter(unused_letters)
         remove_used_letter(current_letter, unused_letters)
