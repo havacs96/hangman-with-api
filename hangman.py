@@ -67,8 +67,8 @@ def replace_correct_guesses(current_letter, letters_to_check, shown_letters):
         shown_letters[position] = current_letter
 
 
-def ask_for_play_again():
-    printers.print_play_again_message()
+def ask_for_play_again(user_name):
+    printers.print_play_again_message(user_name)
     while True:
         play_again = input()
         if validators.is_yes_or_no(play_again):
@@ -112,7 +112,7 @@ def play_hangman():
         if is_game_over == False:
             time.sleep(5)
         else:
-            play_again = ask_for_play_again()
+            play_again = ask_for_play_again(username)
             if play_again == "yes":
                 make_action_by_menu_input()
             else:
