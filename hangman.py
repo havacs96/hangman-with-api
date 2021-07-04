@@ -4,6 +4,7 @@ import printers
 import validators
 import os
 import sys
+import time
 
 SPECIAL_CHARACTERS = [".", "'", " ", "-", "?", "!"]
 
@@ -66,8 +67,13 @@ def replace_correct_guesses(current_letter, letters_to_check, shown_letters):
         shown_letters[position] = current_letter
 
 
-def guess_the_word(is_over, lives, shown_letters, unused_letters, letters_to_check, word, score):
-    while not is_over:
+def guess_the_word(score):
+    lives = 6
+    unused_letters = get_abc_letters()
+    word = get_word()
+    letters_to_check = list(word)
+    shown_letters = ["_" if x not in SPECIAL_CHARACTERS else x for x in letters_to_check]
+    while True:
         os.system('cls||clear')
         printers.print_lives_left(lives)
         printers.print_covered_word(shown_letters)
@@ -78,26 +84,31 @@ def guess_the_word(is_over, lives, shown_letters, unused_letters, letters_to_che
         else:
             lives -= 1
         if not validators.has_lives(lives):
-            is_over = True
             printers.print_lose_message(word)
+            return True, score
         if validators.guessed_word(shown_letters):
-            is_over = True
             score += 2
             printers.print_score(score)
             printers.print_winning_message(word)
+            return False, score
 
 
 def play_hangman():
-    lives = 6
     score = 0
-    is_over = False
+    is_game_over = False
     printers.print_welcome_message()
-    unused_letters = get_abc_letters()
     username = ask_username()
-    word = get_word()
-    letters_to_check = list(word)
-    shown_letters = ["_" if x not in SPECIAL_CHARACTERS else x for x in letters_to_check]
-    guess_the_word(is_over, lives, shown_letters, unused_letters, letters_to_check, word, score)
+    while not is_game_over:
+        is_game_over, score = guess_the_word(score)
+        if is_game_over == False:
+            time.sleep(5)
+        else:
+            pass
+            """play_again = ask_for_play_again()
+            if play_again == True:
+                play_hangman()
+            else:
+                sys.exit(0)"""
 
 
 def make_action_by_menu_input():
