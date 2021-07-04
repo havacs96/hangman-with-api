@@ -66,16 +66,7 @@ def replace_correct_guesses(current_letter, letters_to_check, shown_letters):
         shown_letters[position] = current_letter
 
 
-def play_hangman():
-    lives = 6
-    score = 0
-    is_over = False
-    printers.print_welcome_message()
-    unused_letters = get_abc_letters()
-    username = ask_username()
-    word = get_word()
-    letters_to_check = list(word)
-    shown_letters = ["_" if x not in SPECIAL_CHARACTERS else x for x in letters_to_check]
+def guess_the_word(is_over, lives, shown_letters, unused_letters, letters_to_check, word, score):
     while not is_over:
         os.system('cls||clear')
         printers.print_lives_left(lives)
@@ -94,6 +85,19 @@ def play_hangman():
             score += 2
             printers.print_score(score)
             printers.print_winning_message(word)
+
+
+def play_hangman():
+    lives = 6
+    score = 0
+    is_over = False
+    printers.print_welcome_message()
+    unused_letters = get_abc_letters()
+    username = ask_username()
+    word = get_word()
+    letters_to_check = list(word)
+    shown_letters = ["_" if x not in SPECIAL_CHARACTERS else x for x in letters_to_check]
+    guess_the_word(is_over, lives, shown_letters, unused_letters, letters_to_check, word, score)
 
 
 def make_action_by_menu_input():
