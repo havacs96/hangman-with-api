@@ -2,6 +2,7 @@ from string import ascii_lowercase
 from api_reader import get_api_data as get_word
 import printers
 import validators
+import os
 
 
 SPECIAL_CHARACTERS = [".", "'", " ", "-", "?", "!"]
@@ -66,6 +67,8 @@ def main():
     letters_to_check = list(word)
     shown_letters = ["_" if x not in SPECIAL_CHARACTERS else x for x in letters_to_check]
     while not is_over:
+        os.system('cls||clear')
+        print(f'You have {lives} lives left.')
         printers.print_covered_word(shown_letters)
         current_letter = get_valid_letter(unused_letters)
         remove_used_letter(current_letter, unused_letters)
@@ -76,10 +79,12 @@ def main():
         if not validators.has_lives(lives):
             is_over = True
             printers.print_lose_message()
+            printers.print_correct_word(word)
         if validators.guessed_word(shown_letters):
             is_over = True
             printers.print_winning_message()
-        printers.print_correct_word(word)
+            printers.print_correct_word(word)
+        
 
     
 if __name__ == "__main__":
