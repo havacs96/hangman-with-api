@@ -88,14 +88,12 @@ def play_hangman():
             lives -= 1
         if not validators.has_lives(lives):
             is_over = True
-            printers.print_lose_message()
-            printers.print_correct_word(word)
+            printers.print_lose_message(word)
         if validators.guessed_word(shown_letters):
             is_over = True
             score += 2
             printers.print_score(score)
-            printers.print_winning_message()
-            printers.print_correct_word(word)
+            printers.print_winning_message(word)
 
 
 def make_action_by_menu_input():
