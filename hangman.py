@@ -103,7 +103,7 @@ def play_hangman():
         if is_game_over == False:
             time.sleep(5)
         else:
-            pass
+            printers.print_play_again_message()
             """play_again = ask_for_play_again()
             if play_again == True:
                 play_hangman()
