@@ -68,6 +68,7 @@ def replace_correct_guesses(current_letter, letters_to_check, shown_letters):
 
 def play_hangman():
     lives = 6
+    score = 0
     is_over = False
     printers.print_welcome_message()
     unused_letters = get_abc_letters()
@@ -91,6 +92,8 @@ def play_hangman():
             printers.print_correct_word(word)
         if validators.guessed_word(shown_letters):
             is_over = True
+            score += 2
+            printers.print_score(score)
             printers.print_winning_message()
             printers.print_correct_word(word)
 

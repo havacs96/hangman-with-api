@@ -35,4 +35,8 @@ def print_lose_message():
 
 
 def print_correct_word(word):
-    print(f'The correct word was "{word}"!')
+    print(f'The correct word was {word}!')
+
+
+def print_score(score):
+    print(f"Your score is {score}!")
