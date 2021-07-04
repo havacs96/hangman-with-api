@@ -17,19 +17,6 @@ def ask_for_menu_action():
         print(f"{menu_action} is an invalid input!")
 
 
-def make_action_by_menu_input():
-    menu_input = ask_for_menu_action()
-    if menu_input == 1:
-        #play hangman
-        pass
-    elif menu_input == 2:
-        #show statistics
-        pass
-    elif menu_input == 0:
-        #quit
-        sys.exit(0)
-
-
 def ask_username():
     return input("What is your name?\n\n")
 
@@ -79,11 +66,10 @@ def replace_correct_guesses(current_letter, letters_to_check, shown_letters):
         shown_letters[position] = current_letter
 
 
-def main():
+def play_hangman():
     lives = 6
     is_over = False
     printers.print_welcome_message()
-    make_action_by_menu_input()
     unused_letters = get_abc_letters()
     username = ask_username()
     word = get_word()
@@ -107,6 +93,22 @@ def main():
             is_over = True
             printers.print_winning_message()
             printers.print_correct_word(word)
+
+
+def make_action_by_menu_input():
+    menu_input = ask_for_menu_action()
+    if menu_input == 1:
+        play_hangman()
+    elif menu_input == 2:
+        #show statistics
+        pass
+    elif menu_input == 0:
+        #quit
+        sys.exit(0)
+
+
+def main():
+    make_action_by_menu_input()
         
 
     
