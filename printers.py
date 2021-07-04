@@ -33,8 +33,8 @@ def print_lives_left(lives):
         print(f'You have {lives} life left.')
 
 
-def print_winning_message(word):
-    print("Congratulations! You won!")
+def print_winning_message(word, user_name):
+    print(f"Congratulations {user_name}! You won!")
     print_correct_word(word)
 
 
