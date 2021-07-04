@@ -3,18 +3,31 @@ from api_reader import get_api_data as get_word
 import printers
 import validators
 import os
-
+import sys
 
 SPECIAL_CHARACTERS = [".", "'", " ", "-", "?", "!"]
 
 
 def ask_for_menu_action():
+    printers.print_menu_message()
     while True:
-        printers.print_menu_message()
-        menu_action = input("Please enter a number between")
-        if validators.is_only_number(menu_action) and validators.is_between_zero_and_two(menu_action):
+        menu_action = input("Please enter a number between!\n")
+        if validators.is_only_number(menu_action) and validators.is_between_zero_and_two(int(menu_action)):
             return int(menu_action)
         print(f"{menu_action} is an invalid input!")
+
+
+def make_action_by_menu_input():
+    menu_input = ask_for_menu_action()
+    if menu_input == 1:
+        #play hangman
+        pass
+    elif menu_input == 2:
+        #show statistics
+        pass
+    elif menu_input == 0:
+        #quit
+        sys.exit(0)
 
 
 def ask_username():
@@ -69,8 +82,9 @@ def replace_correct_guesses(current_letter, letters_to_check, shown_letters):
 def main():
     lives = 6
     is_over = False
-    unused_letters = get_abc_letters()
     printers.print_welcome_message()
+    make_action_by_menu_input()
+    unused_letters = get_abc_letters()
     username = ask_username()
     word = get_word()
     letters_to_check = list(word)
