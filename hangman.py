@@ -67,6 +67,15 @@ def replace_correct_guesses(current_letter, letters_to_check, shown_letters):
         shown_letters[position] = current_letter
 
 
+def ask_for_play_again():
+    printers.print_play_again_message()
+    while True:
+        play_again = input()
+        if validators.is_yes_or_no(play_again):
+            return play_again
+        print("Invalid input! Please try again!")
+
+
 def guess_the_word(score):
     lives = 6
     unused_letters = get_abc_letters()
@@ -103,12 +112,11 @@ def play_hangman():
         if is_game_over == False:
             time.sleep(5)
         else:
-            printers.print_play_again_message()
-            """play_again = ask_for_play_again()
-            if play_again == True:
-                play_hangman()
+            play_again = ask_for_play_again()
+            if play_again == "yes":
+                make_action_by_menu_input()
             else:
-                sys.exit(0)"""
+                sys.exit(0)
 
 
 def make_action_by_menu_input():
