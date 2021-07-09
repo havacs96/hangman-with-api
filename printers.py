@@ -11,7 +11,16 @@ def print_menu_message():
     print("""Welcome to the game menu! Please enter a number!
 Write "1" for playing Hangman,
 write "2" for seeing the statistics menu,
-write "0" to exit from the program
+write "0" to exit from the program!
+""")
+
+
+def print_difficulty_message():
+    print("""Please enter a number!
+Write "1" for easy difficulty,
+write "2" for medium difficulty,
+write "3" for hard difficulty,
+write "0" to go back to the game menu!
 """)
 
 
@@ -38,15 +47,13 @@ def print_winning_message(word, user_name):
     print_correct_word(word)
 
 
-
 def print_lose_message(word):
     print("Unfortunatelly you lost! Do not give up!")
     print_correct_word(word)
 
 
-
 def print_correct_word(word):
-    print(f'The correct word was {word}!')
+    print(f'The correct word was {word}!\n')
 
 
 def print_score(score):
@@ -54,5 +61,5 @@ def print_score(score):
 
 
 def print_play_again_message(user_name):
-    print(f"{user_name}, would you like to play again?")
-    print('Type "yes" if you want to play again and type "no" if you do not!')
+    print(f"{user_name}, would you like to go to the menu?")
+    print('Type "yes" if you want to and type "no" if you do not!')
