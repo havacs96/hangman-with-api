@@ -2,6 +2,10 @@ def is_between_zero_and_two(number_input):
     return 0 <= number_input < 3
 
 
+def is_between_zero_and_three(number_input):
+    return 0 <= number_input < 4
+
+
 def is_only_number(number_input):
     return number_input.isdecimal()
 
