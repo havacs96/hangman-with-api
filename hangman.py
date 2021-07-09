@@ -18,6 +18,15 @@ def ask_for_menu_action():
         print(f"{menu_action} is an invalid input!")
 
 
+def ask_for_difficulty():
+    printers.print_difficulty_message()
+    while True:
+        menu_action = input("Please enter a number between!\n")
+        if validators.is_only_number(menu_action) and validators.is_between_zero_and_three(int(menu_action)):
+            return int(menu_action)
+        print(f"{menu_action} is an invalid input!")
+
+
 def ask_username():
     return input("What is your name?\n\n")
 
@@ -122,6 +131,7 @@ def play_hangman():
 def make_action_by_menu_input():
     menu_input = ask_for_menu_action()
     if menu_input == 1:
+        difficulty_input = ask_for_difficulty()
         play_hangman()
     elif menu_input == 2:
         #show statistics
