@@ -8,7 +8,7 @@ I hope you will enjoy the game!
 
 
 def print_menu_message():
-    print("""Welcome to the game menu! Please enter a number!
+    print("""Welcome to the game menu!
 Write "1" for playing Hangman,
 write "2" for seeing the statistics menu,
 write "0" to exit from the program!
@@ -16,11 +16,11 @@ write "0" to exit from the program!
 
 
 def print_difficulty_message():
-    print("""Please enter a number!
-Write "1" for easy difficulty,
-write "2" for medium difficulty,
-write "3" for hard difficulty,
+    print("""Write "1" for easy difficulty (word length is between 14 and 25),
+write "2" for medium difficulty (word length is between 8 and 14),
+write "3" for hard difficulty (word length is between 3 and 8),
 write "0" to go back to the game menu!
+BE VERY CAREFUL! Even the easy difficulty can be hard!
 """)
 
 

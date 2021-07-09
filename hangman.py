@@ -1,5 +1,5 @@
 from string import ascii_lowercase
-from api_reader import get_api_data as get_word
+from api_reader import get_api_data as get_word, get_api_by_difficulty
 import printers
 import validators
 import os
@@ -12,7 +12,7 @@ SPECIAL_CHARACTERS = [".", "'", " ", "-", "?", "!"]
 def ask_for_menu_action():
     printers.print_menu_message()
     while True:
-        menu_action = input("Please enter a number between!\n")
+        menu_action = input("Please enter a number(1, 2 or 0)!\n")
         if validators.is_only_number(menu_action) and validators.is_between_zero_and_two(int(menu_action)):
             return int(menu_action)
         print(f"{menu_action} is an invalid input!")
@@ -21,7 +21,7 @@ def ask_for_menu_action():
 def ask_for_difficulty():
     printers.print_difficulty_message()
     while True:
-        menu_action = input("Please enter a number between!\n")
+        menu_action = input("Please enter a number(1, 2, 3 or 0)!\n")
         if validators.is_only_number(menu_action) and validators.is_between_zero_and_three(int(menu_action)):
             return int(menu_action)
         print(f"{menu_action} is an invalid input!")
@@ -85,10 +85,10 @@ def ask_for_play_again(user_name):
         print("Invalid input! Please try again!")
 
 
-def guess_the_word(score, user_name):
+def guess_the_word(score, user_name, api_by_difficulty):
     lives = 6
     unused_letters = get_abc_letters()
-    word = get_word()
+    word = get_word(api_by_difficulty)
     letters_to_check = list(word)
     shown_letters = ["_" if x not in SPECIAL_CHARACTERS else x for x in letters_to_check]
     while True:
@@ -111,13 +111,14 @@ def guess_the_word(score, user_name):
             return False, score
 
 
-def play_hangman():
+def play_hangman(api_by_difficulty):
+    os.system('cls||clear')
     score = 0
     is_game_over = False
     printers.print_welcome_message()
     username = ask_username()
     while not is_game_over:
-        is_game_over, score = guess_the_word(score, username)
+        is_game_over, score = guess_the_word(score, username, api_by_difficulty)
         if is_game_over == False:
             time.sleep(5)
         else:
@@ -129,10 +130,16 @@ def play_hangman():
 
 
 def make_action_by_menu_input():
+    os.system('cls||clear')
     menu_input = ask_for_menu_action()
     if menu_input == 1:
-        difficulty_input = ask_for_difficulty()
-        play_hangman()
+        os.system('cls||clear')
+        difficulty = ask_for_difficulty()
+        if difficulty == 0:
+            make_action_by_menu_input()
+        else:
+            api_by_difficulty = get_api_by_difficulty(difficulty)
+            play_hangman(api_by_difficulty)
     elif menu_input == 2:
         #show statistics
         pass
