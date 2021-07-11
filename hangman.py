@@ -6,7 +6,7 @@ import os
 import sys
 import time
 
-SPECIAL_CHARACTERS = [".", "'", " ", "-", "?", "!"]
+SPECIAL_CHARACTERS = [".", "'", " ", "-", "?", "!", "è"]
 
 
 def ask_for_menu_action():
@@ -76,6 +76,15 @@ def replace_correct_guesses(current_letter, letters_to_check, shown_letters):
         shown_letters[position] = current_letter
 
 
+def get_score_modifier(difficulty):
+    if difficulty == 1:
+        return 0.5
+    elif difficulty == 2:
+        return 2
+    elif difficulty == 3:
+        return 4.5
+    
+
 def ask_for_play_again(user_name):
     printers.print_play_again_message(user_name)
     while True:
@@ -85,7 +94,7 @@ def ask_for_play_again(user_name):
         print("Invalid input! Please try again!")
 
 
-def guess_the_word(score, user_name, api_by_difficulty):
+def guess_the_word(score, user_name, api_by_difficulty, difficulty):
     lives = 6
     unused_letters = get_abc_letters()
     word = get_word(api_by_difficulty)
@@ -105,20 +114,21 @@ def guess_the_word(score, user_name, api_by_difficulty):
             printers.print_lose_message(word)
             return True, score
         if validators.guessed_word(shown_letters):
-            score += 2
+            score += get_score_modifier(difficulty)
             printers.print_score(score)
             printers.print_winning_message(word, user_name)
             return False, score
 
 
-def play_hangman(api_by_difficulty):
+def play_hangman(difficulty):
     os.system('cls||clear')
     score = 0
     is_game_over = False
     printers.print_welcome_message()
     username = ask_username()
     while not is_game_over:
-        is_game_over, score = guess_the_word(score, username, api_by_difficulty)
+        api_by_difficulty = get_api_by_difficulty(difficulty)
+        is_game_over, score = guess_the_word(score, username, api_by_difficulty, difficulty)
         if is_game_over == False:
             time.sleep(5)
         else:
@@ -138,8 +148,7 @@ def make_action_by_menu_input():
         if difficulty == 0:
             make_action_by_menu_input()
         else:
-            api_by_difficulty = get_api_by_difficulty(difficulty)
-            play_hangman(api_by_difficulty)
+            play_hangman(difficulty)
     elif menu_input == 2:
         #show statistics
         pass
