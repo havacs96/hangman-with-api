@@ -20,6 +20,7 @@ def print_difficulty_message():
 write "2" for medium difficulty (word length is between 8 and 14),
 write "3" for hard difficulty (word length is between 3 and 8),
 write "0" to go back to the game menu!
+You get 0.5 points at easy, 2 points at medium and 4.5 points at hard difficulty for every guessed word!
 BE VERY CAREFUL! Even the easy difficulty can be hard!
 """)
 
