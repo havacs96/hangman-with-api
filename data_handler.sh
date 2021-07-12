@@ -28,6 +28,15 @@ LIMIT 10
 EOF
 }
 
+list_players_by_name() {
+psql << EOF
+SELECT user_name AS "Player name", score AS "Score", difficulty AS Difficulty FROM score
+WHERE user_name = '$@'
+GROUP BY difficulty, score, user_name
+ORDER BY difficulty, score DESC
+EOF
+}
+
 main() {
     if [[ "$1" == "add-player" ]]
     then
@@ -38,6 +47,9 @@ main() {
     elif [[ "$1" == "list-best-players-by-difficulty" ]]
     then
         list_best_players_by_difficulty "$2"
+    elif [[ "$1" == "list-players-by-name" ]]
+    then
+        list_players_by_name "$2"
     fi
 }
 
