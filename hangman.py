@@ -43,10 +43,14 @@ def ask_username():
 
 
 def ask_for_difficulty_for_query():
-    return input("What difficulty do you want to search for?\n\n")
+    while True:
+        difficulty_input = input("What difficulty do you want to search for: easy, medium or hard?\n\n").lower()
+        if validators.is_valid_difficulty(difficulty_input):
+            return difficulty_input
+        print(f"{difficulty_input} is an invalid input!")
 
 
-def ask_for_difficulty_for_query():
+def ask_for_player_name_for_query():
     return input("What player name do you want to search for?\n\n")
 
 
