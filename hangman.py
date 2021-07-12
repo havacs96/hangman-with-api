@@ -46,6 +46,10 @@ def ask_for_difficulty_for_query():
     return input("What difficulty do you want to search for?\n\n")
 
 
+def ask_for_difficulty_for_query():
+    return input("What player name do you want to search for?\n\n")
+
+
 def get_abc_letters():
     return list(ascii_lowercase)
 
