@@ -29,6 +29,15 @@ def ask_for_difficulty():
         print(f"{menu_action} is an invalid input!")
 
 
+def ask_for_statistic_input():
+    printers.print_statistics_menu_message()
+    while True:
+        menu_action = input("Please enter a number(1, 2, 3 or 0)!\n")
+        if validators.is_only_number(menu_action) and validators.is_between_zero_and_three(int(menu_action)):
+            return int(menu_action)
+        print(f"{menu_action} is an invalid input!")
+
+
 def ask_username():
     return input("What is your name?\n\n")
 
@@ -161,9 +170,10 @@ def make_action_by_menu_input():
             make_action_by_menu_input()
         else:
             play_hangman(difficulty)
-    elif menu_input == 2:
+    elif menu_input == 2:   
         #show statistics
-        pass
+        os.system('cls||clear')        
+        statistic_input = ask_for_statistic_input()
     elif menu_input == 0:
         #quit
         sys.exit(0)

@@ -15,11 +15,20 @@ write "0" to exit from the program!
 """)
 
 
+def print_statistics_menu_message():
+    print("""Welcome to the statistics menu!
+Write "1" for listing out all players,
+write "2" for listing out top 10 best players by difficulty,
+write "3" for listing out players by name,
+write "0" to go back to the main menu!
+""")
+
+
 def print_difficulty_message():
     print("""Write "1" for easy difficulty (word length is between 14 and 25),
 write "2" for medium difficulty (word length is between 8 and 14),
 write "3" for hard difficulty (word length is between 3 and 8),
-write "0" to go back to the game menu!
+write "0" to go back to the main menu!
 You get 0.5 points at easy, 2 points at medium and 4.5 points at hard difficulty for every guessed word!
 BE VERY CAREFUL! Even the easy difficulty can be hard!
 """)
