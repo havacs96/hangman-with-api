@@ -40,3 +40,8 @@ def guessed_word(shown_letters):
 
 def is_yes_or_no(input_string):
     return input_string.lower() == "yes" or input_string.lower() == "no"
+
+
+def is_valid_difficulty(difficulty_input):
+    difficulties = ["easy", "medium", "hard"]
+    return difficulty_input in difficulties
