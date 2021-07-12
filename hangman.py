@@ -174,21 +174,28 @@ def play_hangman(difficulty):
 
 def get_statistics_by_input(statistic_input):
     if statistic_input == 1:
+        os.system('cls||clear')
         subprocess.call(shlex.split('./data_handler.sh list-players'))
     elif statistic_input == 2:
+        os.system('cls||clear')
         difficulty_for_query = ask_for_difficulty_for_query()
+        print()
         subprocess.call(shlex.split(f'./data_handler.sh list-best-players-by-difficulty {difficulty_for_query}'))
     elif statistic_input == 3:
+        os.system('cls||clear')
         player_name = ask_for_player_name_for_query()
+        print()
         subprocess.call(shlex.split(f'./data_handler.sh list-players-by-name {player_name}'))
     elif statistic_input == 0:
         make_action_by_menu_input()
+    input("Press Enter to continue...")
 
 
 def make_action_by_menu_input():
     os.system('cls||clear')
     menu_input = ask_for_menu_action()
     if menu_input == 1:
+        #play hangman
         os.system('cls||clear')
         difficulty = ask_for_difficulty()
         if difficulty == 0:
@@ -197,9 +204,10 @@ def make_action_by_menu_input():
             play_hangman(difficulty)
     elif menu_input == 2:   
         #show statistics
-        os.system('cls||clear')        
-        statistic_input = ask_for_statistic_input()
-        get_statistics_by_input(statistic_input)
+        while True:
+            os.system('cls||clear')        
+            statistic_input = ask_for_statistic_input()
+            get_statistics_by_input(statistic_input)
     elif menu_input == 0:
         #quit
         sys.exit(0)
