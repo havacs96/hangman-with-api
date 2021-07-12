@@ -19,6 +19,15 @@ SELECT user_name AS "Player name", score AS "Score", difficulty AS Difficulty FR
 EOF
 }
 
+list_best_players_by_difficulty() {
+psql << EOF
+SELECT user_name AS "Player name", score AS "Score", difficulty AS Difficulty FROM score
+WHERE difficulty = '$@'
+ORDER BY score DESC
+LIMIT 10
+EOF
+}
+
 main() {
     if [[ "$1" == "add-player" ]]
     then
@@ -26,6 +35,9 @@ main() {
     elif [[ "$1" == "list-players" ]]
     then
         list_players
+    elif [[ "$1" == "list-best-players-by-difficulty" ]]
+    then
+        list_best_players_by_difficulty "$2"
     fi
 }
 
