@@ -5,6 +5,8 @@ import validators
 import os
 import sys
 import time
+import subprocess
+import shlex
 
 SPECIAL_CHARACTERS = [".", "'", " ", "-", "?", "!", "è"]
 
@@ -33,6 +35,15 @@ def ask_username():
 
 def get_abc_letters():
     return list(ascii_lowercase)
+
+
+def translate_difficulty(difficulty):
+    if difficulty == 1:
+        return "easy"
+    elif difficulty == 2:
+        return "medium"
+    elif difficulty == 3:
+        return "hard"
 
 
 def create_string_from_unused_letters(unused_letters):
@@ -112,6 +123,7 @@ def guess_the_word(score, user_name, api_by_difficulty, difficulty):
             lives -= 1
         if not validators.has_lives(lives):
             printers.print_lose_message(word)
+            subprocess.call(shlex.split(f'./data_handler.sh add-player {user_name} {score} {translate_difficulty(difficulty)}'))
             return True, score
         if validators.guessed_word(shown_letters):
             score += get_score_modifier(difficulty)
