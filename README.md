@@ -36,14 +36,14 @@ If you do not have PostgreSQL installed, then please do! You are going to need i
 *Note: If you have an newer version, than ubuntu 18.04. __do not worry__ it is going to be the same process*
 
 1. Clone the project first:
-        1. Open up the terminal (Use __CTRL + ALT + T__ for that).
-        2. Go to the repository where you want to have the projects directory.
-        3. Clone the git repositry: *git clone https://github.com/havacs96/hangman-with-api.git*
+   1. Open up the terminal (Use __CTRL + ALT + T__ for that).
+   2. Go to the repository where you want to have the projects directory.
+   3. Clone the git repositry: *git clone https://github.com/havacs96/hangman-with-api.git*
 
 2. Execute *create_database.sql* to create the database:
-        1. Open up the terminal (Use __CTRL + ALT + T__ for that).
-        2. Go into the *hangman-with-api* repository using the *cd* command.
-        3. Execute the SQL file with this command: *psql -U username -d <myDataBase> -a -f create_database.sql* and replace <myDataBase> with your database's name.
+   1. Open up the terminal (Use __CTRL + ALT + T__ for that).
+   2. Go into the *hangman-with-api* repository using the *cd* command.
+   3. Execute the SQL file with this command: *psql -U username -d <myDataBase> -a -f create_database.sql* and replace <myDataBase> with your database's name.
 	
 3. Edit the data_handler.sh:
 	* Done by terminal
